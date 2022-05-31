@@ -9,11 +9,13 @@ const Detail = ({ route }) => {
   const navigation = useNavigation();
 
   const updateTodo = () => {
-    if (textHeading && textHeading.length > e) {
+    // navigation.navigate("Home")
+    if (textHeading && textHeading.length > 0) {
       todoRef
         .doc(route.params.item.id)
         .update({ heading: textHeading })
         .then(() => {
+          alert("Update success!")
           navigation.navigate("Home");
         })
         .catch((error) => {
@@ -32,9 +34,10 @@ const Detail = ({ route }) => {
       />
       <Pressable
         style={styles.buttonUpdate}
-        onPress={() => {
-          updateTodo();
-        }}
+        // onPress={() => {
+        //   updateTodo();
+        // }}
+        onPress={updateTodo}
       >
         <Text>UPDATE TODO</Text>
       </Pressable>
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
     marginBottom:10,
     padding:10,
     fontSize:15,
-    color:'red',
+    color:'black',
     backgroundColor: "#e0e0e0",
     borderRadius: 5,
   },

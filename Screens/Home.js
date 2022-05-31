@@ -20,18 +20,8 @@ const Home = () => {
 
   //get from firebase
   useEffect(() => {
-    // todoRef.orderBy("createdAt", "desc").onSnapshot(querySnapshot => {
-    //   const todos = [];
-    //   querySnapshot.forEach((doc) => {
-    //     const { heading } = doc.data();
-    //     todos.push({
-    //       id: doc.id,
-    //       heading,
-    //     });
-    //   });
-    //   setTodos(todos);
-    // });
-    todoRef.onSnapshot((querySnapshot) => {
+    todoRef.orderBy("createdAt", "desc").onSnapshot(querySnapshot => {
+      const todos = [];
       querySnapshot.forEach((doc) => {
         const { heading } = doc.data();
         todos.push({
@@ -41,6 +31,16 @@ const Home = () => {
       });
       setTodos(todos);
     });
+    // todoRef.onSnapshot((querySnapshot) => {
+    //   querySnapshot.forEach((doc) => {
+    //     const { heading } = doc.data();
+    //     todos.push({
+    //       id: doc.id,
+    //       // heading,
+    //     });
+    //   });
+    //   setTodos(todos);
+    // });
   }, []);
 
   //delete from firebase
@@ -79,7 +79,7 @@ const Home = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <Text>Home{todos}</Text>
+      <View style={styles.h3}>Plan Your Day !</View>
       <View style={styles.formContainer}>
         <TextInput
           style={styles.input}
@@ -113,7 +113,7 @@ const Home = () => {
 
               <View style={styles.innerContainer}>
                 <Text style={styles.itemHeading}>
-                  {item.heading[0].toUpperCase + item.heading.slice(1)}
+                  {item.heading[0].toUpperCase() + item.heading.slice(1)}
                 </Text>
               </View>
             </Pressable>
@@ -178,4 +178,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 14,
   },
+  h3:{
+    textAlign:"center",
+    fontSize:50,
+    backgroundColor:"orange",
+    color:"white"
+  }
 });
