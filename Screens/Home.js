@@ -59,6 +59,7 @@ const Home = () => {
   //add new todo
   const addTodo = () => {
     if (addData && addData.length > 0) {
+      //get time stamp from firebase
       const ts = firebase.firestore.FieldValue.serverTimestamp();
       const data = {
         heading: addData,
